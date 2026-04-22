@@ -9,12 +9,36 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TableRouteImport } from './routes/table'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CreateRouteImport } from './routes/Create'
+import { Route as CategoryRouteImport } from './routes/Category'
+import { Route as AutherRouteImport } from './routes/Auther'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TableRoute = TableRouteImport.update({
+  id: '/table',
+  path: '/table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/Create',
+  path: '/Create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoryRoute = CategoryRouteImport.update({
+  id: '/Category',
+  path: '/Category',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutherRoute = AutherRouteImport.update({
+  id: '/Auther',
+  path: '/Auther',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +49,88 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/Auther': typeof AutherRoute
+  '/Category': typeof CategoryRoute
+  '/Create': typeof CreateRoute
   '/about': typeof AboutRoute
+  '/table': typeof TableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/Auther': typeof AutherRoute
+  '/Category': typeof CategoryRoute
+  '/Create': typeof CreateRoute
   '/about': typeof AboutRoute
+  '/table': typeof TableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/Auther': typeof AutherRoute
+  '/Category': typeof CategoryRoute
+  '/Create': typeof CreateRoute
   '/about': typeof AboutRoute
+  '/table': typeof TableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/Auther' | '/Category' | '/Create' | '/about' | '/table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/Auther' | '/Category' | '/Create' | '/about' | '/table'
+  id:
+    | '__root__'
+    | '/'
+    | '/Auther'
+    | '/Category'
+    | '/Create'
+    | '/about'
+    | '/table'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutherRoute: typeof AutherRoute
+  CategoryRoute: typeof CategoryRoute
+  CreateRoute: typeof CreateRoute
   AboutRoute: typeof AboutRoute
+  TableRoute: typeof TableRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/table': {
+      id: '/table'
+      path: '/table'
+      fullPath: '/table'
+      preLoaderRoute: typeof TableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Create': {
+      id: '/Create'
+      path: '/Create'
+      fullPath: '/Create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Category': {
+      id: '/Category'
+      path: '/Category'
+      fullPath: '/Category'
+      preLoaderRoute: typeof CategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Auther': {
+      id: '/Auther'
+      path: '/Auther'
+      fullPath: '/Auther'
+      preLoaderRoute: typeof AutherRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +145,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutherRoute: AutherRoute,
+  CategoryRoute: CategoryRoute,
+  CreateRoute: CreateRoute,
   AboutRoute: AboutRoute,
+  TableRoute: TableRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

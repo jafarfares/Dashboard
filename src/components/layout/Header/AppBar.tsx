@@ -1,13 +1,16 @@
 import { Menu, Bell } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import ThemeToggle from "../ThemeToggle"
+// import ThemeToggle from "../ThemeToggle"
+import ThemeToggle from "#/components/ThemeToggle"
+import { useSidebar } from "@/components/ui/sidebar"
 export default function AppBar() {
+  const { setOpenMobile } = useSidebar()
   return (
     <header className="w-full h-16  bg-[var(--sidebar-bg)] flex items-center justify-between px-4 sm:px-6">
       
       {/* Left */}
       <div className="flex items-center gap-3">
-        <button className="md:hidden lg:hidden xl:hidden 2xl:hidden">
+        <button className="md:hidden lg:hidden xl:hidden 2xl:hidden" onClick={() => setOpenMobile(true)}>
           <Menu className="w-6 h-6" />
         </button>
 

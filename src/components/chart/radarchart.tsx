@@ -36,7 +36,7 @@ const chartConfig = {
 
 export function ChartRadarDefault() {
   return (
-    <Card className="w-[50%] flex-1">
+    <Card className=" ">
       <CardHeader className="items-center pb-4">
         <CardTitle>Radar Chart</CardTitle>
         <CardDescription>

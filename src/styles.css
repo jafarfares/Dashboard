@@ -70,7 +70,7 @@
   --sea-ink: #d7ece8;
   --sea-ink-soft: #afcdc8;
   --lagoon: #60d7cf;
-  --lagoon-deep: #8de5db;
+  --lagoon-deep: oklch(0.922 0 0);
   --palm: #6ec89a;
   --sand: #0f1a1e;
   --foam: #101d22;
@@ -133,35 +133,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.28;
- 
-} */
-
-/* body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.14;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
-} */
-
 a {
   color: var(--lagoon-deep);
   text-decoration-color: rgba(50, 143, 151, 0.4);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+  /* rgba(50, 143, 151, 0.4) */
 }
 
 a:hover {
@@ -292,13 +269,13 @@ a {
 .dark {
   /* --background: oklch(0.145 0 0); */
   /* --foreground: oklch(0.985 0 0); */
-  --background: #141A28;
+  --background: #020618;
   --foreground: oklch(0.985 0 0);
   /* --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0); */
-  --card: #1B2537;
+  --card: #020919;
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: #000;
   --popover-foreground: oklch(0.985 0 0);
   --primary:  #46C8AF;
   --primary-foreground: oklch(0.985 0 0);
@@ -318,11 +295,11 @@ a {
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
   /* --sidebar: oklch(0.205 0 0); */
-  --sidebar: #1B2537;
+  --sidebar: #020618;
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: #1D293D;
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);

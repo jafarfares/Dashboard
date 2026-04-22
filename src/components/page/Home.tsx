@@ -5,8 +5,12 @@ import { Users } from "lucide-react"
 import {ChartRadialStacked} from "../chart/chartredus"
 import { ChartAreaInteractive } from "../chart/areachart"
 import { ChartRadarDefault } from "../chart/radarchart"
+import { ChartPieLegend } from "../chart/piechart"
+import { createFileRoute } from '@tanstack/react-router'
 
 
+
+ 
 export default function Home(){
     const card=[{title:"Total Users",value:"1,245"},{title:"Total Users",value:"1,245"},{title:"Total Users",value:"1,245"},{title:"Total Users",value:"1,245"}]
     return(
@@ -34,9 +38,10 @@ export default function Home(){
               ))}
             </div>
             <ChartAreaInteractive />
-            <div className="flex flex-row gap-2 w-full ">
+            <div className="flex gap-2 w-full flex-wrap grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-3 gap-1">
               <ChartRadialStacked />
               <ChartRadarDefault/>
+              <ChartPieLegend/>
             </div>
       </div>
 
