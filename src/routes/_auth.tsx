@@ -30,4 +30,3 @@ export const Route = createFileRoute("/_auth")({
     </SidebarProvider>
   ),
 });
-

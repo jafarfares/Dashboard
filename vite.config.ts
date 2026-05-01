@@ -15,6 +15,15 @@ const config = defineConfig({
     tanstackRouter({ target: 'react', autoCodeSplitting: true }),
     viteReact(),
   ],
+  server: {
+    proxy: {
+      '/admin': {
+        target: 'https://abdalrhman.cupital.xyz/api',
+        changeOrigin: true,
+        secure: false,  // للتعامل مع HTTPS
+      },
+    },
+  },
 })
 
 export default config

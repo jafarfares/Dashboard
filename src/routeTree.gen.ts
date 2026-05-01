@@ -11,7 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as AuthIndexRouteImport } from './routes/_auth/index'
 import { Route as UsersUsersRouteImport } from './routes/Users/Users'
 import { Route as SystemTicketsRouteImport } from './routes/System/Tickets'
 import { Route as SystemCreateRouteImport } from './routes/System/Create'
@@ -30,10 +31,14 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthIndexRoute = AuthIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
 const UsersUsersRoute = UsersUsersRouteImport.update({
   id: '/Users/Users',
@@ -72,7 +77,7 @@ const NewsNewsRoute = NewsNewsRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof AuthIndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/News/News': typeof NewsNewsRoute
@@ -84,7 +89,6 @@ export interface FileRoutesByFullPath {
   '/Users/Users': typeof UsersUsersRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/News/News': typeof NewsNewsRoute
@@ -94,10 +98,11 @@ export interface FileRoutesByTo {
   '/System/Create': typeof SystemCreateRoute
   '/System/Tickets': typeof SystemTicketsRoute
   '/Users/Users': typeof UsersUsersRoute
+  '/': typeof AuthIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteWithChildren
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/News/News': typeof NewsNewsRoute
@@ -107,6 +112,7 @@ export interface FileRoutesById {
   '/System/Create': typeof SystemCreateRoute
   '/System/Tickets': typeof SystemTicketsRoute
   '/Users/Users': typeof UsersUsersRoute
+  '/_auth/': typeof AuthIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -123,7 +129,6 @@ export interface FileRouteTypes {
     | '/Users/Users'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/about'
     | '/login'
     | '/News/News'
@@ -133,9 +138,10 @@ export interface FileRouteTypes {
     | '/System/Create'
     | '/System/Tickets'
     | '/Users/Users'
+    | '/'
   id:
     | '__root__'
-    | '/'
+    | '/_auth'
     | '/about'
     | '/login'
     | '/News/News'
@@ -145,10 +151,11 @@ export interface FileRouteTypes {
     | '/System/Create'
     | '/System/Tickets'
     | '/Users/Users'
+    | '/_auth/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
   AboutRoute: typeof AboutRoute
   LoginRoute: typeof LoginRoute
   NewsNewsRoute: typeof NewsNewsRoute
@@ -176,12 +183,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/': {
+      id: '/_auth/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthIndexRouteImport
+      parentRoute: typeof AuthRoute
     }
     '/Users/Users': {
       id: '/Users/Users'
@@ -235,8 +249,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthRouteChildren {
+  AuthIndexRoute: typeof AuthIndexRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthIndexRoute: AuthIndexRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
   AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
   NewsNewsRoute: NewsNewsRoute,
