@@ -4,9 +4,8 @@ import {
   Users,
   Home,
   Ticket,
-  TicketCheck,
   BookOpen,
-  BarChart,
+  
   Newspaper,
   GalleryVerticalEnd,
   SquarePen
@@ -31,22 +30,22 @@ export const sidebarData = {
             {
               title: 'Books',
               icon: BookOpen,
-              url: '/table',
+              url: '/system/Book',
             },
             {
               title: 'Authors',
               icon: SquarePen,
-              url: '/authors',
+              url: '/system/Auther',
             },
             {
               title: 'Category',
               icon: GalleryVerticalEnd,
-              url: '/category',
+              url: '/system/Category',
             },
             {
               title: 'Tickets',
               icon: Ticket,
-              url: '/tickets',
+              url: '/system/Tickets',
             },
           ],
       
@@ -58,7 +57,7 @@ export const sidebarData = {
             {
               title: 'News',
               icon: Newspaper,
-              url: '/News',
+              url: '/News/News',
             },
            
           ],
@@ -70,7 +69,7 @@ export const sidebarData = {
             {
               title: 'Users',
               icon: Users,
-              url: '/Users',
+              url: '/Users/Users',
             },
            
           ],

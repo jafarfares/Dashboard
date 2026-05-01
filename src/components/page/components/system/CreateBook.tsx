@@ -213,8 +213,9 @@ export default function Create() {
 
       <div className="flex justify-end gap-2">
         <Button variant="outline">Cancel</Button>
-        <Button>Create Page</Button>
+        <Button>Create Book</Button>
       </div>
+      
     </div>
   );
 }

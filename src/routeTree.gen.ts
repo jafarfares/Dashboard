@@ -9,16 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TableRouteImport } from './routes/table'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as CreateRouteImport } from './routes/Create'
-import { Route as CategoryRouteImport } from './routes/Category'
-import { Route as AutherRouteImport } from './routes/Auther'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UsersUsersRouteImport } from './routes/Users/Users'
+import { Route as SystemTicketsRouteImport } from './routes/System/Tickets'
+import { Route as SystemCreateRouteImport } from './routes/System/Create'
+import { Route as SystemCategoryRouteImport } from './routes/System/Category'
+import { Route as SystemBookRouteImport } from './routes/System/Book'
+import { Route as SystemAutherRouteImport } from './routes/System/Auther'
+import { Route as NewsNewsRouteImport } from './routes/News/News'
 
-const TableRoute = TableRouteImport.update({
-  id: '/table',
-  path: '/table',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -26,83 +30,143 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreateRoute = CreateRouteImport.update({
-  id: '/Create',
-  path: '/Create',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CategoryRoute = CategoryRouteImport.update({
-  id: '/Category',
-  path: '/Category',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AutherRoute = AutherRouteImport.update({
-  id: '/Auther',
-  path: '/Auther',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UsersUsersRoute = UsersUsersRouteImport.update({
+  id: '/Users/Users',
+  path: '/Users/Users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemTicketsRoute = SystemTicketsRouteImport.update({
+  id: '/System/Tickets',
+  path: '/System/Tickets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemCreateRoute = SystemCreateRouteImport.update({
+  id: '/System/Create',
+  path: '/System/Create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemCategoryRoute = SystemCategoryRouteImport.update({
+  id: '/System/Category',
+  path: '/System/Category',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemBookRoute = SystemBookRouteImport.update({
+  id: '/System/Book',
+  path: '/System/Book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemAutherRoute = SystemAutherRouteImport.update({
+  id: '/System/Auther',
+  path: '/System/Auther',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsNewsRoute = NewsNewsRouteImport.update({
+  id: '/News/News',
+  path: '/News/News',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/Auther': typeof AutherRoute
-  '/Category': typeof CategoryRoute
-  '/Create': typeof CreateRoute
   '/about': typeof AboutRoute
-  '/table': typeof TableRoute
+  '/login': typeof LoginRoute
+  '/News/News': typeof NewsNewsRoute
+  '/System/Auther': typeof SystemAutherRoute
+  '/System/Book': typeof SystemBookRoute
+  '/System/Category': typeof SystemCategoryRoute
+  '/System/Create': typeof SystemCreateRoute
+  '/System/Tickets': typeof SystemTicketsRoute
+  '/Users/Users': typeof UsersUsersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/Auther': typeof AutherRoute
-  '/Category': typeof CategoryRoute
-  '/Create': typeof CreateRoute
   '/about': typeof AboutRoute
-  '/table': typeof TableRoute
+  '/login': typeof LoginRoute
+  '/News/News': typeof NewsNewsRoute
+  '/System/Auther': typeof SystemAutherRoute
+  '/System/Book': typeof SystemBookRoute
+  '/System/Category': typeof SystemCategoryRoute
+  '/System/Create': typeof SystemCreateRoute
+  '/System/Tickets': typeof SystemTicketsRoute
+  '/Users/Users': typeof UsersUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/Auther': typeof AutherRoute
-  '/Category': typeof CategoryRoute
-  '/Create': typeof CreateRoute
   '/about': typeof AboutRoute
-  '/table': typeof TableRoute
+  '/login': typeof LoginRoute
+  '/News/News': typeof NewsNewsRoute
+  '/System/Auther': typeof SystemAutherRoute
+  '/System/Book': typeof SystemBookRoute
+  '/System/Category': typeof SystemCategoryRoute
+  '/System/Create': typeof SystemCreateRoute
+  '/System/Tickets': typeof SystemTicketsRoute
+  '/Users/Users': typeof UsersUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Auther' | '/Category' | '/Create' | '/about' | '/table'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/News/News'
+    | '/System/Auther'
+    | '/System/Book'
+    | '/System/Category'
+    | '/System/Create'
+    | '/System/Tickets'
+    | '/Users/Users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Auther' | '/Category' | '/Create' | '/about' | '/table'
+  to:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/News/News'
+    | '/System/Auther'
+    | '/System/Book'
+    | '/System/Category'
+    | '/System/Create'
+    | '/System/Tickets'
+    | '/Users/Users'
   id:
     | '__root__'
     | '/'
-    | '/Auther'
-    | '/Category'
-    | '/Create'
     | '/about'
-    | '/table'
+    | '/login'
+    | '/News/News'
+    | '/System/Auther'
+    | '/System/Book'
+    | '/System/Category'
+    | '/System/Create'
+    | '/System/Tickets'
+    | '/Users/Users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AutherRoute: typeof AutherRoute
-  CategoryRoute: typeof CategoryRoute
-  CreateRoute: typeof CreateRoute
   AboutRoute: typeof AboutRoute
-  TableRoute: typeof TableRoute
+  LoginRoute: typeof LoginRoute
+  NewsNewsRoute: typeof NewsNewsRoute
+  SystemAutherRoute: typeof SystemAutherRoute
+  SystemBookRoute: typeof SystemBookRoute
+  SystemCategoryRoute: typeof SystemCategoryRoute
+  SystemCreateRoute: typeof SystemCreateRoute
+  SystemTicketsRoute: typeof SystemTicketsRoute
+  UsersUsersRoute: typeof UsersUsersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/table': {
-      id: '/table'
-      path: '/table'
-      fullPath: '/table'
-      preLoaderRoute: typeof TableRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -112,27 +176,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/Create': {
-      id: '/Create'
-      path: '/Create'
-      fullPath: '/Create'
-      preLoaderRoute: typeof CreateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Category': {
-      id: '/Category'
-      path: '/Category'
-      fullPath: '/Category'
-      preLoaderRoute: typeof CategoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Auther': {
-      id: '/Auther'
-      path: '/Auther'
-      fullPath: '/Auther'
-      preLoaderRoute: typeof AutherRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -140,16 +183,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/Users/Users': {
+      id: '/Users/Users'
+      path: '/Users/Users'
+      fullPath: '/Users/Users'
+      preLoaderRoute: typeof UsersUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/System/Tickets': {
+      id: '/System/Tickets'
+      path: '/System/Tickets'
+      fullPath: '/System/Tickets'
+      preLoaderRoute: typeof SystemTicketsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/System/Create': {
+      id: '/System/Create'
+      path: '/System/Create'
+      fullPath: '/System/Create'
+      preLoaderRoute: typeof SystemCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/System/Category': {
+      id: '/System/Category'
+      path: '/System/Category'
+      fullPath: '/System/Category'
+      preLoaderRoute: typeof SystemCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/System/Book': {
+      id: '/System/Book'
+      path: '/System/Book'
+      fullPath: '/System/Book'
+      preLoaderRoute: typeof SystemBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/System/Auther': {
+      id: '/System/Auther'
+      path: '/System/Auther'
+      fullPath: '/System/Auther'
+      preLoaderRoute: typeof SystemAutherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/News/News': {
+      id: '/News/News'
+      path: '/News/News'
+      fullPath: '/News/News'
+      preLoaderRoute: typeof NewsNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AutherRoute: AutherRoute,
-  CategoryRoute: CategoryRoute,
-  CreateRoute: CreateRoute,
   AboutRoute: AboutRoute,
-  TableRoute: TableRoute,
+  LoginRoute: LoginRoute,
+  NewsNewsRoute: NewsNewsRoute,
+  SystemAutherRoute: SystemAutherRoute,
+  SystemBookRoute: SystemBookRoute,
+  SystemCategoryRoute: SystemCategoryRoute,
+  SystemCreateRoute: SystemCreateRoute,
+  SystemTicketsRoute: SystemTicketsRoute,
+  UsersUsersRoute: UsersUsersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

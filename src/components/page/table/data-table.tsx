@@ -134,6 +134,12 @@ function DragHandle({ id }: { id: number }) {
 }
 
 const columns: ColumnDef<z.infer<typeof schema>>[] = [
+  // What this means:
+  // columns = array of column definitions
+  // ColumnDef<T> = type for a column
+  // z.infer<typeof schema> = get TypeScript type from your Zod schema
+  
+  // 💡 So your table rows follow the same structure as your schema.
   {
     id: "drag",
     header: () => null,

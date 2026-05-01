@@ -6,7 +6,7 @@ import {ChartRadialStacked} from "../chart/chartredus"
 import { ChartAreaInteractive } from "../chart/areachart"
 import { ChartRadarDefault } from "../chart/radarchart"
 import { ChartPieLegend } from "../chart/piechart"
-import { createFileRoute } from '@tanstack/react-router'
+// import { createFileRoute } from '@tanstack/react-router'
 
 
 
