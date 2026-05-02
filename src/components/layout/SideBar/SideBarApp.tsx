@@ -24,7 +24,7 @@ import { sidebarData } from "./sidebar-data";
 export function AppSidebar() {
   return (
     <TooltipProvider>
-    <Sidebar collapsible="icon" variant="floating">
+    <Sidebar collapsible="none" variant="floating">
       {/* Header */}
       <SidebarHeader className="p-4 border-b">
         <h3 className="text-lg font-semibold">Library Baghdad</h3>

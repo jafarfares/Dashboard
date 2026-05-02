@@ -4,7 +4,9 @@ import ThemeToggle from "#/components/ThemeToggle";
 import { useSidebar } from "@/components/ui/sidebar";
 
 import { useMatches } from "@tanstack/react-router";
-
+type StaticData = {
+  title?: string;
+};
 export default function AppBar() {
   const { setOpenMobile } = useSidebar();
 
@@ -12,16 +14,26 @@ export default function AppBar() {
     const matches = useMatches();//An array of all routes that are currently matched (active) for the URL
 
     const breadcrumbs = matches
-      .map((match) => match.staticData?.title)
-      .filter(Boolean);//remove any falsy values (like undefined) from the array
+      .map((match) => {
+        const title = (match.staticData as StaticData)?.title;
+        if (title) return title;
+
+        const segment = match.pathname
+          .split('/')
+          .filter(Boolean)
+          .pop();
+
+        return segment
+          ? segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ')
+          : undefined;
+      })
+      .filter(Boolean); // remove any falsy values (like undefined) from the array
 
     return (
       <div className="flex gap-2 text-sm">
         {breadcrumbs.map((title, index) => (
           <span key={index} className="flex items-center gap-2">
             {index > 0 && <span>/</span>}
-            {/* f condition is true → render the right side
-              If false → render nothing */}
             <span>{title}</span>
           </span>
         ))}
@@ -40,8 +52,7 @@ export default function AppBar() {
           <Menu className="w-6 h-6" />
         </button>
         <div className="flex items-center gap-2">
-          <h3>page   /</h3>
-        <Breadcrumbs />
+          <Breadcrumbs />
         </div>
         {/* <h1 className="text-lg font-semibold">MyApp</h1> */}
       </div>

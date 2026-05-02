@@ -30,22 +30,22 @@ export const sidebarData = {
             {
               title: 'Books',
               icon: BookOpen,
-              url: '/system/Book',
+              url: '/System/Book',
             },
             {
               title: 'Authors',
               icon: SquarePen,
-              url: '/system/Auther',
+              url: '/System/Auther',
             },
             {
               title: 'Category',
               icon: GalleryVerticalEnd,
-              url: '/system/Category',
+              url: '/System/Category',
             },
             {
               title: 'Tickets',
               icon: Ticket,
-              url: '/system/Tickets',
+              url: '/System/Tickets',
             },
           ],
       
@@ -59,7 +59,6 @@ export const sidebarData = {
               icon: Newspaper,
               url: '/News/News',
             },
-           
           ],
         },
         {
