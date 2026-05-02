@@ -10,25 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AuthIndexRouteImport } from './routes/_auth/index'
-import { Route as UsersUsersRouteImport } from './routes/Users/Users'
-import { Route as SystemTicketsRouteImport } from './routes/System/Tickets'
-import { Route as SystemCreateRouteImport } from './routes/System/Create'
-import { Route as SystemCategoryRouteImport } from './routes/System/Category'
-import { Route as SystemBookRouteImport } from './routes/System/Book'
-import { Route as SystemAutherRouteImport } from './routes/System/Auther'
-import { Route as NewsNewsRouteImport } from './routes/News/News'
+import { Route as AuthAboutRouteImport } from './routes/_auth/about'
+import { Route as AuthUsersUsersRouteImport } from './routes/_auth/Users/Users'
+import { Route as AuthSystemTicketsRouteImport } from './routes/_auth/System/Tickets'
+import { Route as AuthSystemCreateRouteImport } from './routes/_auth/System/Create'
+import { Route as AuthSystemCategoryRouteImport } from './routes/_auth/System/Category'
+import { Route as AuthSystemBookRouteImport } from './routes/_auth/System/Book'
+import { Route as AuthSystemAutherRouteImport } from './routes/_auth/System/Auther'
+import { Route as AuthNewsNewsRouteImport } from './routes/_auth/News/News'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -40,86 +35,91 @@ const AuthIndexRoute = AuthIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthRoute,
 } as any)
-const UsersUsersRoute = UsersUsersRouteImport.update({
+const AuthAboutRoute = AuthAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthUsersUsersRoute = AuthUsersUsersRouteImport.update({
   id: '/Users/Users',
   path: '/Users/Users',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const SystemTicketsRoute = SystemTicketsRouteImport.update({
+const AuthSystemTicketsRoute = AuthSystemTicketsRouteImport.update({
   id: '/System/Tickets',
   path: '/System/Tickets',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const SystemCreateRoute = SystemCreateRouteImport.update({
+const AuthSystemCreateRoute = AuthSystemCreateRouteImport.update({
   id: '/System/Create',
   path: '/System/Create',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const SystemCategoryRoute = SystemCategoryRouteImport.update({
+const AuthSystemCategoryRoute = AuthSystemCategoryRouteImport.update({
   id: '/System/Category',
   path: '/System/Category',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const SystemBookRoute = SystemBookRouteImport.update({
+const AuthSystemBookRoute = AuthSystemBookRouteImport.update({
   id: '/System/Book',
   path: '/System/Book',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const SystemAutherRoute = SystemAutherRouteImport.update({
+const AuthSystemAutherRoute = AuthSystemAutherRouteImport.update({
   id: '/System/Auther',
   path: '/System/Auther',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const NewsNewsRoute = NewsNewsRouteImport.update({
+const AuthNewsNewsRoute = AuthNewsNewsRouteImport.update({
   id: '/News/News',
   path: '/News/News',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthIndexRoute
-  '/about': typeof AboutRoute
   '/login': typeof LoginRoute
-  '/News/News': typeof NewsNewsRoute
-  '/System/Auther': typeof SystemAutherRoute
-  '/System/Book': typeof SystemBookRoute
-  '/System/Category': typeof SystemCategoryRoute
-  '/System/Create': typeof SystemCreateRoute
-  '/System/Tickets': typeof SystemTicketsRoute
-  '/Users/Users': typeof UsersUsersRoute
+  '/about': typeof AuthAboutRoute
+  '/News/News': typeof AuthNewsNewsRoute
+  '/System/Auther': typeof AuthSystemAutherRoute
+  '/System/Book': typeof AuthSystemBookRoute
+  '/System/Category': typeof AuthSystemCategoryRoute
+  '/System/Create': typeof AuthSystemCreateRoute
+  '/System/Tickets': typeof AuthSystemTicketsRoute
+  '/Users/Users': typeof AuthUsersUsersRoute
 }
 export interface FileRoutesByTo {
-  '/about': typeof AboutRoute
   '/login': typeof LoginRoute
-  '/News/News': typeof NewsNewsRoute
-  '/System/Auther': typeof SystemAutherRoute
-  '/System/Book': typeof SystemBookRoute
-  '/System/Category': typeof SystemCategoryRoute
-  '/System/Create': typeof SystemCreateRoute
-  '/System/Tickets': typeof SystemTicketsRoute
-  '/Users/Users': typeof UsersUsersRoute
+  '/about': typeof AuthAboutRoute
   '/': typeof AuthIndexRoute
+  '/News/News': typeof AuthNewsNewsRoute
+  '/System/Auther': typeof AuthSystemAutherRoute
+  '/System/Book': typeof AuthSystemBookRoute
+  '/System/Category': typeof AuthSystemCategoryRoute
+  '/System/Create': typeof AuthSystemCreateRoute
+  '/System/Tickets': typeof AuthSystemTicketsRoute
+  '/Users/Users': typeof AuthUsersUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_auth': typeof AuthRouteWithChildren
-  '/about': typeof AboutRoute
   '/login': typeof LoginRoute
-  '/News/News': typeof NewsNewsRoute
-  '/System/Auther': typeof SystemAutherRoute
-  '/System/Book': typeof SystemBookRoute
-  '/System/Category': typeof SystemCategoryRoute
-  '/System/Create': typeof SystemCreateRoute
-  '/System/Tickets': typeof SystemTicketsRoute
-  '/Users/Users': typeof UsersUsersRoute
+  '/_auth/about': typeof AuthAboutRoute
   '/_auth/': typeof AuthIndexRoute
+  '/_auth/News/News': typeof AuthNewsNewsRoute
+  '/_auth/System/Auther': typeof AuthSystemAutherRoute
+  '/_auth/System/Book': typeof AuthSystemBookRoute
+  '/_auth/System/Category': typeof AuthSystemCategoryRoute
+  '/_auth/System/Create': typeof AuthSystemCreateRoute
+  '/_auth/System/Tickets': typeof AuthSystemTicketsRoute
+  '/_auth/Users/Users': typeof AuthUsersUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/login'
+    | '/about'
     | '/News/News'
     | '/System/Auther'
     | '/System/Book'
@@ -129,8 +129,9 @@ export interface FileRouteTypes {
     | '/Users/Users'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/about'
     | '/login'
+    | '/about'
+    | '/'
     | '/News/News'
     | '/System/Auther'
     | '/System/Book'
@@ -138,33 +139,24 @@ export interface FileRouteTypes {
     | '/System/Create'
     | '/System/Tickets'
     | '/Users/Users'
-    | '/'
   id:
     | '__root__'
     | '/_auth'
-    | '/about'
     | '/login'
-    | '/News/News'
-    | '/System/Auther'
-    | '/System/Book'
-    | '/System/Category'
-    | '/System/Create'
-    | '/System/Tickets'
-    | '/Users/Users'
+    | '/_auth/about'
     | '/_auth/'
+    | '/_auth/News/News'
+    | '/_auth/System/Auther'
+    | '/_auth/System/Book'
+    | '/_auth/System/Category'
+    | '/_auth/System/Create'
+    | '/_auth/System/Tickets'
+    | '/_auth/Users/Users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
-  AboutRoute: typeof AboutRoute
   LoginRoute: typeof LoginRoute
-  NewsNewsRoute: typeof NewsNewsRoute
-  SystemAutherRoute: typeof SystemAutherRoute
-  SystemBookRoute: typeof SystemBookRoute
-  SystemCategoryRoute: typeof SystemCategoryRoute
-  SystemCreateRoute: typeof SystemCreateRoute
-  SystemTicketsRoute: typeof SystemTicketsRoute
-  UsersUsersRoute: typeof UsersUsersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -174,13 +166,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth': {
@@ -197,79 +182,94 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/Users/Users': {
-      id: '/Users/Users'
+    '/_auth/about': {
+      id: '/_auth/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AuthAboutRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/Users/Users': {
+      id: '/_auth/Users/Users'
       path: '/Users/Users'
       fullPath: '/Users/Users'
-      preLoaderRoute: typeof UsersUsersRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthUsersUsersRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/System/Tickets': {
-      id: '/System/Tickets'
+    '/_auth/System/Tickets': {
+      id: '/_auth/System/Tickets'
       path: '/System/Tickets'
       fullPath: '/System/Tickets'
-      preLoaderRoute: typeof SystemTicketsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthSystemTicketsRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/System/Create': {
-      id: '/System/Create'
+    '/_auth/System/Create': {
+      id: '/_auth/System/Create'
       path: '/System/Create'
       fullPath: '/System/Create'
-      preLoaderRoute: typeof SystemCreateRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthSystemCreateRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/System/Category': {
-      id: '/System/Category'
+    '/_auth/System/Category': {
+      id: '/_auth/System/Category'
       path: '/System/Category'
       fullPath: '/System/Category'
-      preLoaderRoute: typeof SystemCategoryRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthSystemCategoryRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/System/Book': {
-      id: '/System/Book'
+    '/_auth/System/Book': {
+      id: '/_auth/System/Book'
       path: '/System/Book'
       fullPath: '/System/Book'
-      preLoaderRoute: typeof SystemBookRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthSystemBookRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/System/Auther': {
-      id: '/System/Auther'
+    '/_auth/System/Auther': {
+      id: '/_auth/System/Auther'
       path: '/System/Auther'
       fullPath: '/System/Auther'
-      preLoaderRoute: typeof SystemAutherRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthSystemAutherRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/News/News': {
-      id: '/News/News'
+    '/_auth/News/News': {
+      id: '/_auth/News/News'
       path: '/News/News'
       fullPath: '/News/News'
-      preLoaderRoute: typeof NewsNewsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthNewsNewsRouteImport
+      parentRoute: typeof AuthRoute
     }
   }
 }
 
 interface AuthRouteChildren {
+  AuthAboutRoute: typeof AuthAboutRoute
   AuthIndexRoute: typeof AuthIndexRoute
+  AuthNewsNewsRoute: typeof AuthNewsNewsRoute
+  AuthSystemAutherRoute: typeof AuthSystemAutherRoute
+  AuthSystemBookRoute: typeof AuthSystemBookRoute
+  AuthSystemCategoryRoute: typeof AuthSystemCategoryRoute
+  AuthSystemCreateRoute: typeof AuthSystemCreateRoute
+  AuthSystemTicketsRoute: typeof AuthSystemTicketsRoute
+  AuthUsersUsersRoute: typeof AuthUsersUsersRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthAboutRoute: AuthAboutRoute,
   AuthIndexRoute: AuthIndexRoute,
+  AuthNewsNewsRoute: AuthNewsNewsRoute,
+  AuthSystemAutherRoute: AuthSystemAutherRoute,
+  AuthSystemBookRoute: AuthSystemBookRoute,
+  AuthSystemCategoryRoute: AuthSystemCategoryRoute,
+  AuthSystemCreateRoute: AuthSystemCreateRoute,
+  AuthSystemTicketsRoute: AuthSystemTicketsRoute,
+  AuthUsersUsersRoute: AuthUsersUsersRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
-  AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
-  NewsNewsRoute: NewsNewsRoute,
-  SystemAutherRoute: SystemAutherRoute,
-  SystemBookRoute: SystemBookRoute,
-  SystemCategoryRoute: SystemCategoryRoute,
-  SystemCreateRoute: SystemCreateRoute,
-  SystemTicketsRoute: SystemTicketsRoute,
-  UsersUsersRoute: UsersUsersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

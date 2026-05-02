@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Create from '#/components/page/components/system/CreateBook'
-export const Route = createFileRoute('/System/Create')({
+export const Route = createFileRoute('/_auth/System/Create')({
   component: Create,
   staticData: {
     title: "Create Book"
