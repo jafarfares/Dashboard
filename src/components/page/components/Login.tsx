@@ -24,10 +24,10 @@ export default function Login() {
         password,
       });
 
-      const token = res.data.token;
+      const token = res.data.payload.token;
 
       localStorage.setItem("token", token);
-
+      
       navigate({ to: "/" });
     } catch (err: any) {
       console.log(err);
