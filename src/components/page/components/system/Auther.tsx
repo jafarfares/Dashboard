@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-// import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Search from "#/components/search/Search";
@@ -20,16 +19,16 @@ import { useState } from "react";
 export default function Auther() {
 
 
-   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [author_name, setName] = useState("");
+  const [dec, setDescription] = useState("");
 
   const { mutate, isPending } = useCreateAuthor();
 
   const handleCreate = () => {
     mutate(
       {
-        name,
-        description,
+        author_name,
+        dec,
       },
       {
         onSuccess: () => {
@@ -58,16 +57,16 @@ export default function Auther() {
             </DialogHeader>
             <hr />
             <Label>Name*</Label>
-            <Input  value={name}
+            <Input  value={author_name}
               onChange={(e) => setName(e.target.value)}/>
 
             <Label>Description*</Label>
-            <TextEditor value={description} onChange={setDescription} />
+            <Input value={dec} onChange={(e) => setDescription(e.target.value)} />
 
             <DialogClose asChild>
               <div className="flex w-full items-center justify-end gap-2">
                 <Button variant="outline">Cancel</Button>
-                <Button onClick={handleCreate} disabled={isPending}>
+                <Button onClick={handleCreate} >
                  {isPending ? "Creating..." : "Create"}
                 </Button>
               </div>

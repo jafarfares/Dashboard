@@ -1,6 +1,7 @@
 import api from "../axios";
-
-export const createAuthors=async (data:any)=>{
-    const res = await api.post("/admin/author", data);
+import { ItemSchema } from "./type";
+export const createAuthors=async (data:unknown)=>{
+    const parsedData=ItemSchema.parse(data);
+    const res = await api.post("/admin/author", parsedData);
     return res.data;
 }

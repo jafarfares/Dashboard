@@ -36,6 +36,8 @@ export default function AuthorTable() {
     page * ITEMS_PER_PAGE
   )
 
+  
+
   return (
     <div className="w-full space-y-4">
       {/* TABLE */}
