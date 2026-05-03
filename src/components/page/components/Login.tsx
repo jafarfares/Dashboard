@@ -19,12 +19,14 @@ export default function Login() {
     setIsLoading(true);
     setError("");
     try {
-      const res = await api.post("/login", {
+      const res = await api.post("/admin/login", {
         email,
         password,
       });
 
-      const token = res.data.payload.token;
+      console.log("Login response:", res.data);
+
+      const token = res.data.token || res.data.payload?.token;
 
       localStorage.setItem("token", token);
       navigate({ to: "/" });

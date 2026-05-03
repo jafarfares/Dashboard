@@ -10,5 +10,8 @@ export const useCreateAuthor = () => {
     console.log("✅ Author created:", data);
       queryClient.invalidateQueries({ queryKey: ["authors"] });
     },
+    onError: (error) => {
+      console.error("❌ Error creating author:", error);
+    },
   });
 };
