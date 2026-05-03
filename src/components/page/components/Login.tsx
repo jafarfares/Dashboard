@@ -27,10 +27,10 @@ export default function Login() {
       const token = res.data.payload.token;
 
       localStorage.setItem("token", token);
-      
       navigate({ to: "/" });
     } catch (err: any) {
       console.log(err);
+      
       setError(err.response?.data?.message || "Invalid email or password. Please try again.");
     } finally {
       setIsLoading(false);
