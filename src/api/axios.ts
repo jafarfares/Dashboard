@@ -4,11 +4,12 @@ const token = localStorage.getItem("token");
 const api = axios.create({
     baseURL:API_URL,
     headers:{
-       "Content-Type": "application/json",
+       "Content-Type": "application/json",//She tells the servant, "I am sending json"
        ...(token && { "Authorization": `Bearer ${token}` })
     }
 })
 api.interceptors.request.use((config) => {
+  //interceptors It works before each order and brings the latest token and add to headers
   const token = localStorage.getItem("token");
   console.log(token);
   if (token) {
