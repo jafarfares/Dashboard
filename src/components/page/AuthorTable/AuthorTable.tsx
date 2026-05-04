@@ -167,7 +167,7 @@ export default function AuthorTable() {
             </TableHeader>
 
             <TableBody>
-              {data.data.map((author:{id:number,}) => (
+              {data.data.map((author:{id:number,author_name:string,dec:string}) => (
                 <TableRow key={author.id}>
                   <TableCell className="font-medium">
                     {author.author_name}
