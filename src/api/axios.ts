@@ -1,17 +1,14 @@
 import axios from "axios";
 const API_URL=import.meta.env.VITE_API_BASE_URL;
-const token = localStorage.getItem("token");
+// const token = localStorage.getItem("token");
 const api = axios.create({
-    baseURL:API_URL,
-    headers:{
-       "Content-Type": "application/json",//She tells the servant, "I am sending json"
-       ...(token && { "Authorization": `Bearer ${token}` })
-    }
+  baseURL:API_URL,
+   
 })
 api.interceptors.request.use((config) => {
   //interceptors It works before each order and brings the latest token and add to headers
   const token = localStorage.getItem("token");
-  console.log(token);
+  // console.log(token);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -23,8 +20,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem("token");
-      window.location.href = "/login";
+      console.log("401 error in seriver")
     }
     return Promise.reject(error);
   }

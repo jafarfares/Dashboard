@@ -26,7 +26,7 @@ export default function Login() {
 
       console.log("Login response:", res.data);
 
-      const token = res.data.token || res.data.payload?.token;
+      const token = res.data.access_token || res.data.payload?.access_token||res.data?.data?.access_token||res.data?.payload?.data?.access_token;
 
       localStorage.setItem("token", token);
       navigate({ to: "/" });
