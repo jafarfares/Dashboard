@@ -240,7 +240,7 @@ export default function AuthorTable() {
   // })
   }, [data])
 
-  // ✅ الأعمدة
+  // ✅ columns
   const columns: ColumnDef<Author>[] = [
     {
       id: "drag",
