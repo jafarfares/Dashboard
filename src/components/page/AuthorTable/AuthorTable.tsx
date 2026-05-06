@@ -9,7 +9,7 @@
 //   TableHeader,
 //   TableRow,
 // } from "@/components/ui/table"
-  
+
 // import { Button } from "@/components/ui/button"
 // import { Pencil, Trash2 } from "lucide-react"
 // import { useAuthors } from "#/hooks/useAuthors"
@@ -47,7 +47,7 @@
 //                     {author.author_name}
 //                   </TableCell>
 
-                  
+
 //                   <TableCell
 //                     className="text-muted-foreground"
 //                     dangerouslySetInnerHTML={{ __html: author.dec }}
@@ -123,6 +123,7 @@
 
 import * as React from "react"
 import { useAuthors } from "#/hooks/useAuthors"
+import ShowAuthor from "./DrawerShowAuthor/ShowAuthor"
 
 import {
   useReactTable,
@@ -162,7 +163,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { IconGripVertical, IconDotsVertical } from "@tabler/icons-react"
 
-// ✅ نوع البيانات
+// ✅ data type
 type Author = {
   id: number
   name: string
@@ -213,7 +214,7 @@ export default function AuthorTable() {
   // const [page] = React.useState(1)
   const [page, setPage] = React.useState(1)
   const [perPage, setPerPage] = React.useState(10)
-  const { data, isLoading } = useAuthors(page,perPage)
+  const { data, isLoading } = useAuthors(page, perPage)
 
   // ✅ hooks لازم تكون فوق دائمًا
   const [tableState, setTableState] = React.useState<Author[]>([])
@@ -235,9 +236,6 @@ export default function AuthorTable() {
       setTableState(mapped)
     }
 
-
-    
-  // })
   }, [data])
 
   // ✅ columns
@@ -266,9 +264,11 @@ export default function AuthorTable() {
       accessorKey: "name",
       header: "Name",
       cell: ({ row }) => (
-        <span className="font-medium">
-          {row.original.name}
-        </span>
+        <ShowAuthor author={row.original}>
+          <span className="font-medium hover:underline">
+            {row.original.name}
+          </span>
+        </ShowAuthor>
       ),
     },
     {
@@ -278,7 +278,7 @@ export default function AuthorTable() {
         <div
           className="text-muted-foreground line-clamp-2"
           dangerouslySetInnerHTML={{
-            __html: row.original.description,
+            __html: row.original.description.length > 40 ? row.original.description.slice(0, 40) + "..." : row.original.description,
           }}
         />
       ),
@@ -359,131 +359,112 @@ export default function AuthorTable() {
 
 
 
-         
+
 
           {/* <div className="flex justify-center items-center gap-2 py-4">
-  <Button
-    variant="outline"
-    disabled={!data?.prev_page_url}
-    onClick={() => setPage((p) => p - 1)}
-  >
-    Prev
-  </Button>
+            <Button
+              variant="outline"
+              disabled={!data?.prev_page_url}
+              onClick={() => setPage((p) => p - 1)}
+            >
+              Prev
+            </Button>
 
-  {Array.from({ length: data?.last_page || 1 }).map((_, i) => (
-    <Button
-      key={i}
-      variant={page === i + 1 ? "default" : "outline"}
-      onClick={() => setPage(i + 1)}
-    >
-      {i + 1}
-    </Button>
-  ))}
+            {Array.from({ length: data?.last_page || 1 }).map((_, i) => (
+              <Button
+                key={i}
+                variant={page === i + 1 ? "default" : "outline"}
+                onClick={() => setPage(i + 1)}
+              >
+                {i + 1}
+              </Button>
+            ))}
 
-  <Button
-    variant="outline"
-    disabled={!data?.next_page_url}
-    onClick={() => setPage((p) => p + 1)}
-  >
-    Next
-  </Button>
-</div> */}
-
-
+            <Button
+              variant="outline"
+              disabled={!data?.next_page_url}
+              onClick={() => setPage((p) => p + 1)}
+            >
+              Next
+            </Button>
+          </div>
 
 
 
 
 
-
-      <div className="flex items-center justify-between px-4 py-4">
-  {/* LEFT */}
-  <div className="text-sm text-muted-foreground">
-    Showing {data?.from} to {data?.to} of {data?.total}
-  </div>
-
-  {/* RIGHT */}
-  <div className="flex items-center gap-6">
-    {/* Rows per page */}
-    <div className="flex items-center gap-2">
-      <span className="text-sm">Rows per page</span>
-
-      {/* <select
-        className="border rounded px-2 py-1 text-sm"
-        value={perPage}
-        onChange={(e) => {
-          setPerPage(Number(e.target.value))
-          setPage(1) // مهم ترجع لأول صفحة
-        }}
-      >
-        {[10, 20, 30, 50].map((size) => (
-          <option key={size} value={size}>
-            {size}
-          </option>
-        ))}
-      </select> */}
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>Rows per page:</span>
+            {[10, 20, 30].map((size) => (
+              <Button
+                key={size}
+                size="sm"
+                variant={perPage === size ? "default" : "outline"}
+                onClick={() => {
+                  setPerPage(size)
+                  setPage(1) // reset to page 1 when changing per page
+                }}
+              >
+                {size}
+              </Button>
+            ))}
+          </div> */}
 
 
 
-      <select
-  value={perPage}
-  onChange={(e) => handlePerPageChange(Number(e.target.value))}
->
-  {[10, 20, 30, 50].map((size) => (
-    <option key={size} value={size}>
-      {size}
-    </option>
-  ))}
-</select>
-    </div>
+          {/* PAGINATION BAR */}
+          <div className="flex justify-between items-center px-4 py-3 text-sm text-muted-foreground border-t">
 
-    {/* Page info */}
-    <div className="text-sm">
-      Page {data?.current_page} of {data?.last_page}
-    </div>
+            {/* Left: Showing info */}
+            <span>
+              Showing {(page - 1) * perPage + 1} to {Math.min(page * perPage, data?.total || 0)} of {data?.total || 0}
+            </span>
 
-    {/* Buttons */}
-    <div className="flex items-center gap-2">
-      <Button
-        variant="outline"
-        size="icon"
-        disabled={!data?.prev_page_url}
-        onClick={() => setPage(1)}
-      >
-        {"<<"}
-      </Button>
+            {/* Right: Rows per page + navigation */}
+            <div className="flex items-center gap-4">
 
-      <Button
-        variant="outline"
-        size="icon"
-        disabled={!data?.prev_page_url}
-        onClick={() => setPage((p) => p - 1)}
-      >
-        {"<"}
-      </Button>
+              {/* Rows per page dropdown */}
+              <div className="flex items-center gap-2">
+                <span>Rows per page</span>
+                <select
+                  value={perPage}
+                  onChange={(e) => {
+                    setPerPage(Number(e.target.value))
+                    setPage(1)
+                  }}
+                  className="border rounded px-2 py-1 bg-background text-foreground text-sm"
+                >
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={30}>30</option>
+                </select>
+              </div>
 
-      <Button
-        variant="outline"
-        size="icon"
-        disabled={!data?.next_page_url}
-        onClick={() => setPage((p) => p + 1)}
-      >
-        {">"}
-      </Button>
+              {/* Page info */}
+              <span>Page {page} of {data?.last_page || 1}</span>
 
-      <Button
-        variant="outline"
-        size="icon"
-        disabled={!data?.next_page_url}
-        onClick={() => setPage(data.last_page)}
-      >
-        {">>"}
-      </Button>
-    </div>
-  </div>
-</div>
+              {/* Navigation arrows */}
+              <div className="flex items-center gap-1">
+                {/* First page */}
+                <Button variant="outline" size="icon" disabled={page === 1} onClick={() => setPage(1)}>
+                  «
+                </Button>
+                {/* Prev */}
+                <Button variant="outline" size="icon" disabled={!data?.prev_page_url} onClick={() => setPage((p) => p - 1)}>
+                  ‹
+                </Button>
+                {/* Next */}
+                <Button variant="outline" size="icon" disabled={!data?.next_page_url} onClick={() => setPage((p) => p + 1)}>
+                  ›
+                </Button>
+                {/* Last page */}
+                <Button variant="outline" size="icon" disabled={page === data?.last_page} onClick={() => setPage(data?.last_page)}>
+                  »
+                </Button>
+              </div>
 
-
+            </div>
+          </div>
 
         </DndContext>
       </div>
